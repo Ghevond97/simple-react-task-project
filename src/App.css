@@ -23,7 +23,9 @@
 }
 
 .Welcome-text {
+  margin-top: 1.5%;
   color: firebrick;
+  font-size: 2em;
 }
 /*.Button {*/
   /*background-image: linear-gradient(-90deg, red, yellow);*/

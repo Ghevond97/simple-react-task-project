@@ -7,18 +7,21 @@ import './style.css';
 const ing = [
   {
     img: 'https://mdbootstrap.com/img/Photos/Others/photo8.jpg',
-    date: '19/08/2018',
+    date: '0,5',
+    name: 'a',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
   },
   {
     img: 'https://mdbootstrap.com/img/Photos/Others/img%20(27).jpg',
-    date: '18/08/2018',
+    date: '0,5',
+    name: 'b',
     description:
       'Soluta nobis est eligendi optio cumque nihil impedit quo minus'
   },
   {
     img: 'https://mdbootstrap.com/img/Photos/Others/photo8.jpg',
-    date: '18/08/2018',
+    date: '0,5',
+    name: 'l,',
     description: 'Voluptatem accusantium doloremque'
   }
 ];
@@ -39,17 +42,18 @@ class IngredientsPage extends Component {
     }
     if (event.target.checked === false) {
       this.setState(prevState => ({
-        complete: prevState.complete.filter(item => item !== el)
+        complete: prevState.complete.filter(item => item.name !== el.name)
       }));
     }
-
-    console.log(event.target.checked, this.state);
   }
   render() {
+    const { complete } = this.state;
     const newsStyle = {
       borderBottom: '1px solid red',
       marginBottom: '1.5rem'
     };
+    const jsonIngredients = JSON.stringify(complete);
+    localStorage.setItem('ingredients', jsonIngredients);
 
     return (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -90,7 +94,7 @@ class IngredientsPage extends Component {
                           <label className="container">
                             <input
                               type="checkbox"
-                              onChange={event => this.onChange(event, el.img)}
+                              onChange={event => this.onChange(event, el)}
                             />
                             <span className="checkmark" />
                           </label>

@@ -1,0 +1,17 @@
+.orderlist {
+  margin-top: 8%;
+}
+.orderlist-bar {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.orderlist-elems {
+  border: 1px solid #ddd;
+  width: 25%;
+  background-color: #f6f6f6;
+  padding: 12px;
+}

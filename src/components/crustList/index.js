@@ -1,15 +1,78 @@
 import React, { Component } from 'react';
 
-import { Animation } from 'mdbreact';
+import { Animation, Fa } from 'mdbreact';
 
 import './styles.css';
 
 class Crust extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      crust: ''
+    };
+
+    this.onSelectThin = this.onSelectThin.bind(this);
+    this.onSelectThick = this.onSelectThick.bind(this);
+    this.ButtonThin = this.ButtonThin.bind(this);
+    this.ButtonThick = this.ButtonThick.bind(this);
+  }
+
+  onSelectThin() {
+    this.setState(() => ({
+      crust: 'Thin'
+    }));
+  }
+
+  onSelectThick() {
+    this.setState(() => ({
+      crust: 'Thick'
+    }));
+  }
+
+  ButtonThin() {
+    return (
+      <button
+        type="button"
+        onClick={() => {
+          this.onSelectThin();
+          setTimeout(() => this.props.history.push('/topping'), 0);
+        }}
+        className="btn peach-gradient"
+        style={{ fontSize: '1em', color: 'midnightblue' }}
+      >
+        Select
+      </button>
+    );
+  }
+
+  ButtonThick() {
+    return (
+      <button
+        type="button"
+        onClick={() => {
+          this.onSelectThick();
+          setTimeout(() => this.props.history.push('/topping'), 0);
+        }}
+        className="btn peach-gradient"
+        style={{ fontSize: '1em', color: 'midnightblue' }}
+      >
+        Select
+      </button>
+    );
+  }
   render() {
+    const { crust } = this.state;
+    
+    localStorage.setItem('crust', crust);
+
     return (
       <Animation type="slideInUp">
         <div className="a">
-          <p className="h1">Choose the crust thickness</p>
+          <p className="h1">
+            {' '}
+            <Fa icon="cutlery" className="pr-2" />
+            Choose the crust thickness
+          </p>
 
           <div className="div">
             <ul className="cards">
@@ -19,17 +82,11 @@ class Crust extends Component {
                   <div className="card__content">
                     <div className="card__title">Thin Crust</div>
                     <p className="card__text">
-                      This is the shorthand for flex-grow, flex-shrink and
-                      flex-basis combined. The second and third parameters
-                      (flex-shrink and flex-basis) are optional. Default is 0 1
-                      auto.{' '}
+                      Thin crust, not your typical Tashir pizza crust, if you
+                      choose anything else but this, you might aswell want to
+                      close this page right now
                     </p>
-                    <button
-                      className="btn peach-gradient"
-                      style={{ fontSize: '1em', color: 'midnightblue' }}
-                    >
-                      Select
-                    </button>
+                    <this.ButtonThin />
                   </div>
                 </div>
               </li>
@@ -39,17 +96,10 @@ class Crust extends Component {
                   <div className="card__content">
                     <div className="card__title">Thic Crust</div>
                     <p className="card__text">
-                      This defines the ability for a flex item to grow if
-                      necessary. It accepts a unitless value that serves as a
-                      proportion. It dictates what amount of the available space
-                      inside the flex container the item should take up.
+                      Don't call yourself a pizza lover if you choose thick
+                      crust over thin crust
                     </p>
-                    <button
-                      className="btn peach-gradient"
-                      style={{ fontSize: '1em', color: 'midnightblue' }}
-                    >
-                      Select
-                    </button>
+                    <this.ButtonThick />
                   </div>
                 </div>
               </li>

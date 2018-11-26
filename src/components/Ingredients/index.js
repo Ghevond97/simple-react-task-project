@@ -2,27 +2,37 @@ import React, { Component } from 'react';
 
 import { Container, Row, Col, Fa, View } from 'mdbreact';
 
+import olives from '../../olive.png';
+import sausage from '../../sausage.png';
+import peppers from '../../pepper.png';
+import cheese from '../../cheese.png';
+
 import './style.css';
 
 const ing = [
   {
-    img: 'https://mdbootstrap.com/img/Photos/Others/photo8.jpg',
+    img: olives,
     date: '0,5',
     name: 'a',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+    description: 'Olives'
   },
   {
-    img: 'https://mdbootstrap.com/img/Photos/Others/img%20(27).jpg',
+    img: cheese,
     date: '0,5',
     name: 'b',
-    description:
-      'Soluta nobis est eligendi optio cumque nihil impedit quo minus'
+    description: 'Cheese'
   },
   {
-    img: 'https://mdbootstrap.com/img/Photos/Others/photo8.jpg',
+    img: peppers,
     date: '0,5',
     name: 'l,',
-    description: 'Voluptatem accusantium doloremque'
+    description: 'Peppers'
+  },
+  {
+    img: sausage,
+    date: '0,5',
+    name: 'l,',
+    description: 'Sausage'
   }
 ];
 
@@ -48,10 +58,13 @@ class IngredientsPage extends Component {
   }
   render() {
     const { complete } = this.state;
+    const { history } = this.props;
+
     const newsStyle = {
       borderBottom: '1px solid red',
       marginBottom: '1.5rem'
     };
+
     const jsonIngredients = JSON.stringify(complete);
     localStorage.setItem('ingredients', jsonIngredients);
 
@@ -64,14 +77,8 @@ class IngredientsPage extends Component {
               style={{ color: 'firebrick' }}
             >
               <Fa icon="cutlery" className="pr-2" />
-              Section title
+              Choose Toppings
             </h2>
-            <p className="dark-grey-text mx-auto mb-5 w-75 text-center">
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-              cupidatat non proident, sunt in culpa qui officia deserunt mollit
-              id laborum.
-            </p>
             <Row>
               <Col lg="6" md="8" className="float-left">
                 {ing.map((el, i) => (
@@ -79,7 +86,12 @@ class IngredientsPage extends Component {
                     <Row>
                       <Col md="3">
                         <View hover rounded className="z-depth-1-half mb-4">
-                          <img className="img-fluid" src={el.img} alt={i} />
+                          <img
+                            className="img-fluid"
+                            src={el.img}
+                            alt={el.img}
+                            style={{ backgroundColor: 'darksalmon' }}
+                          />
                         </View>
                       </Col>
                       <Col md="9">
@@ -105,6 +117,20 @@ class IngredientsPage extends Component {
                 ))}
               </Col>
             </Row>
+            <button
+              className="btn peach-gradient"
+              style={{ fontSize: '1em', color: 'midnightblue' }}
+              onClick={() => history.push('/crust')}
+            >
+              Edit Crust
+            </button>
+            <button
+              className="btn peach-gradient"
+              style={{ fontSize: '1em', color: 'midnightblue' }}
+              onClick={() => history.push('/finish')}
+            >
+              Select
+            </button>
           </Container>
         </div>
       </div>
